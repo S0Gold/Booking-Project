@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-4 m-auto">
+  <div class="card m-auto">
+    <div class="card-header d-flex justify-content-center strong">
+      Inregistrare
+    </div>
+    <div class="card-body">
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="name" class="form-label">Nume</label>
+          <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="booking.lastName">
+          <span *ngIf="!lastName.valid && lastName.touched" class="error-block">
+            Te rugăm să completezi acest camp.
+          </span>
+        </div>
+
+        <div class="form-group ">
+            <label for="name" class="form-label">Prenume</label>
+            <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="booking.firstName">
+            <span *ngIf="!firstName.valid && firstName.touched " class="error-block">
+              Te rugăm să completezi acest camp.
+            </span>
+        </div>
+
+        <div class="form-group">
+          <label for="cnp" class="form-label">Cnp</label>
+          <input type="text" class="form-control" formControlName="cnp" [(ngModel)]="booking.cnp">
+          <span *ngIf="!cnp.valid && cnp.touched " class="error-block">
+            Te rugăm să completezi acest camp.
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="mobile" class="form-label">Număr de telefon</label>
+          <input type="text" class="form-control" formControlName="phoneNumber" [(ngModel)]="booking.phoneNumber">
+          <span *ngIf="!phoneNumber.valid && phoneNumber.touched" class="error-block">
+            Te rugăm să completezi acest camp.
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="roomNumber" class="form-label">Numarul camerei</label>
+          <input type="number" class="form-control" formControlName="roomNumber" [(ngModel)]="booking.roomNumber">
+          <span *ngIf="!roomNumber.valid && roomNumber.touched" class="error-block">
+            Te rugăm să completezi acest camp.
+          </span>
+        </div>
+       
+        <div class="form-group mt-2">
+          <label for="mobile" class="form-label">Data si ora de sosire:</label>
+          <div class="p-field p-col-12 ">
+            <p-calendar [(ngModel)]="startDate" [showTime]="true" inputId="time" formControlName="startDate"></p-calendar>
+          </div>
+        </div>
+
+        <div class="form-group  mt-2">
+          <label for="mobile" class="form-label">Data si ora de plecare:</label>
+          <div class="p-field p-col-12 ">
+            <p-calendar [(ngModel)]="stopDate" [showTime]="true" inputId="time" formControlName="stopDate"></p-calendar>
+          </div>
+          <span *ngIf="startDate > stopDate" class="error-block">
+            Te rugăm să alegi o data anterioara datei si orei de sosire.
+          </span>
+        </div>
+              
+        <div class="form-group col-12 d-flex justify-content-center mt-4">
+          <button [disabled]="!bookingForm.valid || startDate == null || stopDate == null"
+            type="submit"
+            class="btn btn-success col-5 m-2">  
+            Rezerva  
+          </button>
+        </div>
+
+      </form>
+
+
+
+    </div>
+  </div>
+  </div>
+</div>

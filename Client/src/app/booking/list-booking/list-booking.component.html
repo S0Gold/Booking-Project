@@ -1,0 +1,44 @@
+<div class="card">
+  <p-table [value]="bookings" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{'min-width': '50rem'}"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="width:12%">Prenume</th>
+              <th style="width:12%">Nume</th>
+              <th style="width:15%">Cnp</th>
+              <th style="width:12%">Telefon</th>
+              <th style="width:5%">Camera</th>
+              <th style="width:18%">Data/Ora de sosoire</th>
+              <th style="width:18%">Data/ora de plecare</th>
+              <th style="width:2%">Modifica</th>
+              <th style="width:2%">Sterge</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-booking>
+          <tr>
+              <td>{{booking.firstName}}</td>
+              <td>{{booking.lastName}}</td>
+              <td>{{booking.cnp}}</td>
+              <td>{{booking.phoneNumber}}</td>
+              <td>{{booking.roomNumber}}</td>
+              <td>{{getFormatDate(booking.startDate)}}</td>
+              <td>{{getFormatDate(booking.stopDate)}}</td>
+              <td>
+                <button class="btn btn-secondary" routerLink="/edit/{{booking.id}}">
+                  E
+                </button></td>
+              <td>
+                <button class="btn btn-danger" (click)="removeBooking(booking.id)">
+                  D
+                </button>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" routerLink="/add"> </p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" ></p-button>
+      </ng-template>
+  </p-table>
+</div>
